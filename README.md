@@ -37,11 +37,13 @@ The equation above represents the formula for the periodic function. The coeffic
 
 Additionally, the function values in the $x$, $y$, and $z$ directions of this periodic function are all different. This means that the overall path resembles selecting any point in the workspace and moving in a periodic motion within that space, as shown in the diagram below. Furthermore, the positions, velocities, and accelerations in the training data are all kept within the limits of the machine.
 
-![training trajectory pic](https://hackmd.io/_uploads/SkOHPEBY2.png)
+![Untitled](https://github.com/PhoniExZoe/PGNN/assets/24270422/9a1515a1-8037-4c17-bb27-69f51e54379d)
+
 
 Different paths with varying maximum speeds and accelerations are generated based on the period of the periodic function $w_f$. Therefore, the training dataset can be divided into randomly generated paths of low, medium, and high speeds. In the table below, it can be observed that, with a fixed sampling frequency of 1000Hz, the different periods result in varying amounts of data for each velocity within a single path. Thus, by adjusting the proportion of path numbers, an equal number of samples (100,000) is obtained for low, medium, and high-speed paths. In summary, through the Holdout method, all the data is split at an 80-20 ratio for training and validation data, with quantities of 240,000 and 60,000, respectively.
 
-![training dataset range](https://hackmd.io/_uploads/rJ0LuVSt2.png)
+![image](https://github.com/PhoniExZoe/PGNN/assets/24270422/3545d01a-4c8c-4ae7-a875-be947160f595)
+
 
 ### Testing Data
 
@@ -64,7 +66,8 @@ TestingData_ATraj_B
 
 Multiple sets of quintic polynomial trajectories are served to assess the general capabilities of the model. As depicted in the diagram below, a quintic polynomial trajectory involves selecting two points in space and describing the relationship between them using a quintic polynomial.  
 
-![](https://hackmd.io/_uploads/rkJI1_Btn.png)
+![image](https://github.com/PhoniExZoe/PGNN/assets/24270422/7938f986-26ce-49ce-9dd0-6720b52d3719)
+
 
 By taking the derivative of the quintic polynomial with respect to time, we can obtain the velocity equation represented by a quartic polynomial and the acceleration equation represented by a cubic polynomial. From the equations below, it is apparent that to fully determine the parameters $a_0$ to $a_5$ of these equations, six condition equations are required. These conditions include the initial position $p_0$ , initial velocity $v_0$ , initial acceleration $a_0$ , final position $p_f$ , final velocity $v_f$ , and final acceleration $a_f$ . Therefore, in this paper, these six values will be randomly generated within the parameter range of the workspace and training data.
 
@@ -82,13 +85,14 @@ $$
 
 In summary, the range and the sampling number of quintic polynomial trajectory data are described below.
 
-![](https://hackmd.io/_uploads/HyZyWOrF3.png)
+![image](https://github.com/PhoniExZoe/PGNN/assets/24270422/b192a80a-294d-4520-9dad-bdacae5be2cf)
+
 
 ### Loss function :
 
 PGNN stands for Physics-Guided Neural Network, which adds a compensation function to the loss function of a neural network during training. Before the training process, a custom class *Hook* is defined to capture the output values of neurons in the hidden layers. Specifically, the function *registerforwardhook* is utilized to gain the parameters of the model during the forward pass. By specifying the desired neural network layer, one can access the output of that layer as well as the input from the previous layer. On the other hand, *registerbackwardhook* is employed to obtain the gradient values of each layer during the backward pass, which is crucial for backpropagation and parameter updates.
 
-```python=
+```python
 class Hook():
     def __init__(self, module, backward=False):
         if backward==False:
@@ -115,7 +119,7 @@ tr_dataset = TrajDataset(tr_path)
 ```
 * Change the model name and file directory
 Find the "Hyper-parameters Setup" section and change the value of 'save_path' in the variable config.
-```python=
+```python
 config = {
     'n_epochs': 15,                    # maximum number of epochs
     'batch_size': 16,                   # mini-batch size for dataloader
@@ -132,7 +136,7 @@ config = {
 ### Testing :
 * Change the testing and model to use
 Find the variable ts_path and test_config in the "Testing with trained NN" section.
-```python=
+```python
 ts_path = os.path.abspath("./Resources/TestingData_PeriodicTraj_Single.xlsx")
 ts_dataset = TrajDataset(ts_path)
 
