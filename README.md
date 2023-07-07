@@ -6,6 +6,8 @@ This repository provides code for the PGNN paper. If you're using the code in yo
 
 This study addresses the challenges of analytically deriving the dynamic model for parallel kinematic manipulators due to high nonlinearity and strong joint coupling. It employs a novel machine learning model, called Physics-Guided Neural Network, which utilizes the simplicity of the analytically derived kinematic model and the fast computational characteristics of neural networks. The model is trained using data-driven neural networks and incorporates physics-based loss functions to guide the inverse dynamic model training process. The study demonstrates the superior performance of the kinematics model guided neural network in terms of convergence, interpolation capability, extrapolation capability, generalization capability, and robustness compared to traditional data-driven neural networks.
 
+![Untitled1](https://github.com/PhoniExZoe/PGNN/assets/24270422/a1d2832b-b5ed-4ac1-b434-5594055da494)
+
 ## Getting Started
 
 ### Dependencies : 
