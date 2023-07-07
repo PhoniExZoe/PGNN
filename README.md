@@ -10,12 +10,12 @@ This study addresses the challenges of analytically deriving the dynamic model f
 
 ## Getting Started
 
-### Dependencies : 
+### Dependencies: 
 * Python 3.9.13
 * Pytorch 1.12.0
 * scikit-learn 1.1.1
 
-### Datasets :
+### Datasets:
 
 The repository contains code and datasets needed for training and testing the PGNN model described in the paper, including interpolation, extrapolation, and generalization capability.
 
@@ -90,7 +90,7 @@ In summary, the range and the sampling number of quintic polynomial trajectory d
 ![image](https://github.com/PhoniExZoe/PGNN/assets/24270422/b192a80a-294d-4520-9dad-bdacae5be2cf)
 
 
-### Loss function :
+### Loss function:
 
 PGNN stands for Physics-Guided Neural Network, which adds a compensation function to the loss function of a neural network during training. Before the training process, a custom class *Hook* is defined to capture the output values of neurons in the hidden layers. Specifically, the function *registerforwardhook* is utilized to gain the parameters of the model during the forward pass. By specifying the desired neural network layer, one can access the output of that layer as well as the input from the previous layer. On the other hand, *registerbackwardhook* is employed to obtain the gradient values of each layer during the backward pass, which is crucial for backpropagation and parameter updates.
 
@@ -111,7 +111,7 @@ class Hook():
 
 ## Using the code
 
-### Training :
+### Training:
 If you want to retrain the model just execute the file Model_training.ipynb .  
 * Change training data
 Find the "Load Data" section that Load data and change it into other data. 
@@ -135,7 +135,7 @@ config = {
 }
 ```
 
-### Testing :
+### Testing:
 * Change the testing and model to use
 Find the variable ts_path and test_config in the "Testing with trained NN" section.
 ```python
@@ -154,6 +154,7 @@ test_config = {'save_path' : 'models/model_DDNN.pt'}
 * [ADAMS](https://hexagon.com/products/product-groups/computer-aided-engineering-software/adams) - Simulation data verification
 
 ## Authors
+
 * WeiChu (Wilson) Chen
 
 ## License
